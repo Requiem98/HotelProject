@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments.html :: headerfiles(title=#{title.addCamera})"></head> 
+<body>
+	<div th:replace="fragments/fragments.html :: intestazione-admin"></div>
+	
+	<div id="aggiungiCamera">
+		<form th:action="@{/segreteriaHome/add}" method="post" th:object="${camera}">
+			<label>Numero Stanza: <span th:if="${#fields.hasErrors('numeroStanza')}" th:errors="*{numeroStanza}" style="color: red; float: right;"></span></label>
+			<input type="number" min="1" th:field="*{numeroStanza}">
+			
+			<label>Numero Posti: <span th:if="${#fields.hasErrors('numeroPosti')}" th:errors="*{numeroPosti}" style="color: red; float: right;"></span></label>
+			<input type="number" min="1" th:field="*{numeroPosti}">
+			
+			<label>Numero letti matrimoniali: <span th:if="${#fields.hasErrors('matrimoniali')}" th:errors="*{matrimoniali}" style="color: red; float: right;"></span></label>
+			<input type="number" min="0" th:field="*{matrimoniali}">
+			
+			<label>Numero letti singoli: <span th:if="${#fields.hasErrors('singoli')}" th:errors="*{singoli}" style="color: red; float: right;"></span></label>
+			<input type="number" min="0" th:field="*{singoli}">
+			
+			<label>Prezzo: <span th:if="${#fields.hasErrors('prezzo')}" th:errors="*{prezzo}" style="color: red; float: right;"></span></label>
+			<input type="number" min="1" th:field="*{prezzo}">
+			
+			<input type="reset" value="Cancella"> 
+			<input type="submit" value="Invia">
+		</form>
+	</div>
+</body>
+</html>

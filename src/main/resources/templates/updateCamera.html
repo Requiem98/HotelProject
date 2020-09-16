@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments.html :: headerfiles(title=#{title.updateCamera})"></head> 
+<body>
+	<div th:replace="fragments/fragments.html :: intestazione-admin"></div>
+	
+	<div id="aggiornaCamera">
+		<form th:action="@{/elencoUpdate/updateCamera/updated}" method="post">
+			<label>Numero Stanza: <span th:text="${oldCamera.numeroStanza}"></span> <span th:if="${#fields.hasErrors('newCamera.numeroStanza')}" th:errors="${newCamera.numeroStanza}" style="color: red; float: right;"></span></label>
+			<input type="number" min="1" th:field="${newCamera.numeroStanza}">
+			
+			<label>Numero Posti: <span th:text="${oldCamera.numeroPosti}"></span> <span th:if="${#fields.hasErrors('newCamera.numeroPosti')}" th:errors="${newCamera.numeroPosti}" style="color: red; float: right;"></span></label>
+			<input type="number" min="1" th:field="${newCamera.numeroPosti}">
+			
+			<label>Numero letti matrimoniali: <span th:text="${oldCamera.matrimoniali}"></span> <span th:if="${#fields.hasErrors('newCamera.matrimoniali')}" th:errors="${newCamera.matrimoniali}" style="color: red; float: right;"></span></label>
+			<input type="number" min="0" th:field="${newCamera.matrimoniali}">
+			
+			<label>Numero letti singoli: <span th:text="${oldCamera.singoli}"></span> <span th:if="${#fields.hasErrors('newCamera.singoli')}" th:errors="${newCamera.singoli}" style="color: red; float: right;"></span></label>
+			<input type="number" min="0" th:field="${newCamera.singoli}">
+			
+			<label>Prezzo: <span th:text="${oldCamera.prezzo}"></span> <span th:if="${#fields.hasErrors('newCamera.prezzo')}" th:errors="${newCamera.prezzo}" style="color: red; float: right;"></span></label>
+			<input type="number" min="1" th:field="${newCamera.prezzo}">
+			
+			
+			<label style="float: left;">La camera è prenotata? <span th:if="${oldCamera.libera}" th:text="libera"></span><span th:unless="${oldCamera.libera}" th:text="occupata"></span></label>
+				<select name="isLibera">
+  					<option value="occupata">Si</option>
+  					<option value="libera">No</option>
+  				</select>
+			
+			<input type="reset" value="Cancella"> 
+			<input type="submit" value="Invia">
+		</form>
+	</div>
+</body>
+</html>

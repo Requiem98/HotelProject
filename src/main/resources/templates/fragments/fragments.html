@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<title th:text="${title}"></title>
+</head>
+<body>
+
+
+
+	<div th:fragment="intestazione-index" style="position: relative;">
+		<header>
+			<button type="button" value="login" onclick="location.href='/segreteriaHome';">Login</button>
+			<img alt="logo" th:src="@{/images/logo_corallo.png}" class="logo">
+			<!-- <h1 id="titolo">Hotel Corallo</h1>-->
+		</header>
+	</div>
+	
+	
+	
+		<div th:fragment="intestazione-admin" style="position: relative;">
+		<header>
+			<button type="button" value="back" onclick="location.href='/segreteriaHome';">back</button>
+			<img alt="logo" th:src="@{/images/logo_corallo.png}" class="logo">
+			<!-- <h1 id="titolo">Hotel Corallo</h1>-->
+		</header>
+	</div>
+
+
+
+
+	<div th:fragment="intestazione" style="position: relative;">
+		<header>
+			<img alt="logo" th:src="@{/images/logo_corallo.png}" class="logo">
+			<!-- <h1 id="titolo">Hotel Corallo</h1>-->
+			<form action="/" name="backForm">
+				<input type="submit" name="back" value="Back">
+			</form>
+		</header>
+	</div>
+
+</body>
+</html>

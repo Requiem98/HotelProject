@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments.html :: headerfiles(title=#{title.removePrenotazione})"></head> 
+<body>
+	<div th:replace="fragments/fragments.html :: intestazione-admin"></div>
+	<div id="rimuoviPrenotazione">
+				<form th:action="@{/segreteriaHome/remPren}" method="post">
+			<label>Inserisci il numero della prenotazione da eliminare:</label>
+			<input type="number" name="numeroPrenotazione">
+			
+			<input type="reset" value="Cancella"> 
+			<input type="submit" value="Invia">
+		</form>
+	</div>
+</body>
+</html>

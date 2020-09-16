@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments.html :: headerfiles(title=#{title.datiUtente})"></head>
+<body>
+	<div th:replace="fragments/fragments.html :: intestazione"></div>
+	<div id="datiUtente">
+		<form th:action="@{/index/prenotazione/elencoStanze/dati/registrazione}" name="prenotazioneForm" th:object="${utenteForm}" method="post">
+			
+			<div class="error" th:if="${#fields.hasGlobalErrors()}">
+				<p th:each="err : ${#fields.globalErrors()}" th:text="${err}" style="color: red;"></p>
+			</div>
+			
+			<div id="credenziali">
+				<div>
+					<label>Nome: <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" style="color: red; float: right;"></span></label> 
+					<input type="text" name="nome" th:field="*{nome}"> 
+					<label>Cognome: <span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}" style="color: red; float: right;"></span></label> 
+					<input type="text" name="cognome" th:field="*{cognome}">
+				</div>
+				<div>
+					<label>Data di nascita: <span th:if="${#fields.hasErrors('dataDiNascitaString')}" th:errors="*{dataDiNascitaString}" style="color: red; float: right;"></span></label> 
+					<input type="date" name="dataDiNascita" th:field="*{dataDiNascitaString}">
+				</div>
+				<div>
+					<label>Codice Fiscale: <span th:if="${#fields.hasErrors('codiceFiscale')}" th:errors="*{codiceFiscale}" style="color: red; float: right;"></span></label> 
+					<input type="text" name="codiceFiscale" th:field="*{codiceFiscale}">
+				</div>
+				<div>
+					<label>Email: <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red; float: right;"></span></label> 
+					<input type="email" name="email" th:field="*{email}">
+				</div>
+				<div>
+					<label>Cellulare: <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" style="color: red; float: right;"></span></label> 
+					<input type="tel" name="telefono" th:field="*{telefono}">
+				</div>
+			</div>
+			<input type="reset" value="Cancella"> <input
+				type="submit" value="Invia">
+		</form>
+	</div>
+</body>
+</html>

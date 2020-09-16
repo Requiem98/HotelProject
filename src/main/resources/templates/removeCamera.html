@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments.html :: headerfiles(title=#{title.removeCamera})"></head> 
+<body>
+	<div th:replace="fragments/fragments.html :: intestazione-admin"></div>
+	<div id="rimuoviCamera">
+		<form th:action="@{/segreteriaHome/rem}" method="post">
+			<label>Inserisci il numero della camera da eliminare:</label>
+			<input type="number" min="1" name="numeroStanza">
+			
+			<input type="reset" value="Cancella"> 
+			<input type="submit" value="Invia">
+		</form>
+	</div>
+</body>
+</html>

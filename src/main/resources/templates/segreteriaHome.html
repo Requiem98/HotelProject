@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments.html :: headerfiles(title=#{title.segreteriaHome})"></head>
+<body>
+	<div th:replace="fragments/fragments.html :: intestazione"></div>
+	<div id="SegreteriaHome">
+		<form th:action="@{/}">
+			<button class="home" type="submit" th:formaction="@{/ricercaCamere}">Cerca Camera</button>
+			<button class="home" type="submit" th:formaction="@{/addCamera}">Aggiungi Camera</button>
+			<button class="home" type="submit" th:formaction="@{/removeCamera}">Rimuovi Camera</button>
+			<button class="home" type="submit" th:formaction="@{/elencoUpdate}">Aggiorna Camera</button>
+			<button class="home" type="submit" th:formaction="@{/elencoPrenotazioni}">Elenco Prenotazioni</button>
+			<button class="home" type="submit" th:formaction="@{/removePrenotazione}">Rimuovi Prenotazione</button>
+			
+		</form>
+	</div>
+</body>
+</html>

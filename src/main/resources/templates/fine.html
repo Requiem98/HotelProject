@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments.html :: headerfiles(title=#{title.fine})"></head>
+<body>
+	<div th:replace="fragments/fragments.html :: intestazione"></div>
+	
+	<div id="datiFinali">
+		<h1>Prenotazione completata</h1>
+					
+		<h3>Numero prenotazione: <span th:text="${prenotazione.numeroPrenotazione}">tf58hh37znt9d</span></h3>
+		<h3>Numero stanza: <span th:text="${prenotazione.camera.numeroStanza}">5</span></h3>
+		<h3>Letti Singoli: <span th:text="${prenotazione.camera.singoli}">1</span></h3>
+		<h3>Letti Matrimoniali: <span th:text="${prenotazione.camera.matrimoniali}">1</span></h3>
+		<h3>Data di arrivo: <span th:text="${prenotazione.arrivo}">1/6/2020</span></h3>
+		<h3>Data di partenza: <span th:text="${prenotazione.partenza}">6/6/2020</span></h3>
+		<h3>Nome: <span th:text="${prenotazione.ospiti[0].nome}"></span></h3>
+		<h3>Cognome: <span th:text="${prenotazione.ospiti[0].cognome}"></span></h3>
+		
+		<p>Una mail di riassunto è stata inviata nella sua casella postale</p>
+	</div>
+
+</body>
+</html>

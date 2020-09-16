@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments.html :: headerfiles(title=#{title.elencoPrenotazioni})"></head>
+<body>
+	<div th:replace="fragments/fragments.html :: intestazione-admin"></div>
+	<div id="elencoPrenotazioni">
+		
+			<ul th:if="${prenotazioni}">
+				<li th:each="prenotazione : ${prenotazioni}">
+					<h3 class="txt-elenco" style="float: left;">Numero prenotazione: </h3>
+					<h3 th:text="${prenotazione.numeroPrenotazione}" class="txt-elenco" style="float: left;">5</h3>
+
+					<h3 class="txt-elenco" style="float: left;">Camera Prenotata: </h3>
+					<h3 th:text="${prenotazione.camera.numeroStanza}" class="txt-elenco" style="float: left;">2</h3>
+
+					<h3 class="txt-elenco" style="float: left;">Arrivo: </h3>
+					<h3 th:text="${prenotazione.arrivo}" class="txt-elenco">1</h3>
+					
+					<h3 class="txt-elenco" style="float: left;">Partenza: </h3>
+					<h3 th:text="${prenotazione.partenza}">1</h3>
+					
+					<h3 class="txt-elenco">Prenotata da: </h3>
+					<h3 th:text="${prenotazione.ospiti[0].nome}" class="txt-elenco"></h3>
+					<h3 th:text="${prenotazione.ospiti[0].cognome}" class="txt-elenco"></h3>
+
+				</li>
+			</ul>
+			<div class="unless" th:unless="${prenotazioni}">
+				<p>Nessuna prenotazione trovata</p>
+				<button type="button" value="back" onclick="location.href='/segreteriaHome';">Back</button>
+			</div>
+		
+	</div>
+</body>
+</html>

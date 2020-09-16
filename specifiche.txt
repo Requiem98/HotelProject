@@ -1,0 +1,26 @@
+Elenco dei Casi d'uso:
+
+L'utente medio (quindi il cliente, o il possibile cliente, dell'albergo) accede alla pagina iniziale
+dove verrà indirizzato alla pagina per la prenotazione. Immetterà la data di arrivo e partenza desiderata 
+e il numero di persone. A questo punto potrà visionare tutte le camere libere e prenotabili in quel periodo
+e potrà sceglierne una. Una volta scelta, l'utente dovrà finalizzare la prenotazione inserendo i suoi dati (pagamento escluso).
+Fatto ciò, l'utente e la prenotazione saranno salvati nel database e la camera settata come occupata per quel periodo.
+
+ricapitolando:
+1) Ricerca camera nel database
+2) Inserimento nuova prenotazione nel database
+3) Inserimento nuovo utente nel database
+
+
+La segreteria, previa autenticazione, accede nella pagina web dove può gestire tutto l'albergo:
+
+1) Creare una nuova camera
+2) Trovare una camera nel database
+3) Aggiornare una camera nel database
+4) Rimuovere una camera nel database
+5) Vedere l'elenco delle prenotazioni
+6) Rimuovere una prenotazione
+
+
+
+Amedeo Ranaldi 520318

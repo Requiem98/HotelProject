@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments.html :: headerfiles(title=#{title.elencoSegreteria})"></head>
+<body> 
+	 <div th:replace="fragments/fragments.html :: intestazione-admin"></div>
+			
+				<div id="table-div" style="position: relative;">
+		
+			<ul th:if="${camere}" style="position: relative;">
+				<li th:each="camera : ${camere}" style="position: relative;">
+					<div id="div-dati-elenco" style="position: relative;">
+					<h3 class="txt-elenco">Numero stanza: <span th:text="${camera.numeroStanza}"></span></h3>
+
+					<h3 class="txt-elenco">Letti matrimoniali:<span th:text="${camera.matrimoniali}"></span> </h3>
+
+					<h3 class="txt-elenco">Letti singoli: <span th:text="${camera.singoli}"></span></h3>
+					
+					<h3 class="txt-elenco">Prezzo: <span th:text="${camera.prezzo}"></span>€</h3><br>
+					</div>
+					<p class="descrizioneCamera" th:text="#{descrizioneCamera__${camera.numeroStanza}__}"></p>
+					
+					<img alt="test" th:src="@{/images/camere/camera__${camera.numeroStanza}__.jpg}" name="imgstanza">
+				</li>
+			</ul>
+			
+			<div class="unless" th:unless="${camere}">
+				<p>Nessuna Camera trovata nel database</p>
+				<button type="button" value="back" onclick="location.href='/ricercaCamere';">Back</button>
+			</div>
+	</div>
+</body>
+</html>

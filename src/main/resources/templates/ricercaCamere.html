@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments.html :: headerfiles(title=#{title.ricercaCamere})"></head>
+<body>
+	<div th:replace="fragments/fragments.html :: intestazione-admin"></div>
+	<div id="ricercaDatiSegreteria">
+		<form th:action="@{/segreteriaHome/camere}" th:object="${segreteriaForm}"
+			method="post">
+			<div class="error" th:if="${#fields.hasGlobalErrors()}">
+				<p th:each="err : ${#fields.globalErrors()}" th:text="${err}"
+					style="color: red;"></p>
+			</div>
+
+			<div id="date">
+				<label>Data di Arrivo <span
+					th:if="${#fields.hasErrors('arrivoString')}"
+					th:errors="*{arrivoString}" style="color: red; float: right;"></span>
+				</label> <input type="date" name="arrivo" th:field="*{arrivoString}">
+				<label>Data di Partenza <span
+					th:if="${#fields.hasErrors('partenzaString')}"
+					th:errors="*{partenzaString}" style="color: red; float: right;"></span></label>
+				<input type="date" name="partenza" th:field="*{partenzaString}">
+			</div>
+			<div id="ospiti">
+				<label>Numero Ospiti <span
+					th:if="${#fields.hasErrors('numeroOspiti')}"
+					th:errors="*{numeroOspiti}" style="color: red;"></span></label> <input
+					type="number" name="numeroOspiti" th:field="*{numeroOspiti}" max="4">
+			</div>
+			<div id="isLibera">
+				<label style="float: left;">La camera
+					è prenotata?</label>
+					<select name="isLibera" th:field="*{libera}">
+  						<option th:value="occupata">Si</option>
+  						<option th:value="libera">No</option>
+  						<option th:value="na">N/A</option>
+  					</select>
+			</div>
+			<input type="reset" value="Cancella"> <input type="submit"
+				value="Invia">
+		</form>
+	</div>
+</body>
+</html>

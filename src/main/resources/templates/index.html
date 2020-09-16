@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments.html :: headerfiles(title=#{title.index})"></head>
+<body id="index">
+	<div th:replace="fragments/fragments.html :: intestazione-index"></div>
+	<div id="index-main">
+		<main>
+			<h3 style="color: white;">Ubicato in un edificio storico ristrutturato, l’Hotel Corallo unisce, in una felice ed equilibrata combinazione, antichi ambienti e nuovi comfort¸ la sua posizione permette di raggiungere le Cinque Terre con un breve tragitto in treno o in traghetto e grazie ai collegamenti ferroviari avrete la possibilità di visitare grandi città quali Genova, Pisa e Parma.</h3>
+			<form th:action="@{/prenotazione}" name="formPrenota" method="get">
+				<input type="submit" name="prenota" value="Prenota Ora">
+			</form>
+		</main>
+	</div>
+	
+	<div id="ristorante">
+		<h1 id="ristorante-title">Ristorante</h1>
+		<img alt="ristorante" th:src="@{/images/ristorante/ristorante.jpg}" name="imgRistorante">
+		<p id="ristorante-txt">Il ristorante, accogliente e riservato, ha un soffitto con travi a vista e tavolato in quercia.
+Qui vengono servite “Le proposte di stagione”, in abbinamento all’ampia selezione di vini della nostra cantina, in una calda ed avvolgente atmosfera che invita alla lenta ed appagante degustazione.</p>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments.html :: headerfiles(title=#{title.prenotazione})"></head>
+<body>
+	<div th:replace="fragments/fragments.html :: intestazione"></div>
+	
+	<div id="datiPrenotazione">
+		<h2 id = "prenotazione">Trova la camera giusta per te!</h2>
+		<form th:action="@{/index/prenotazione/elencoStanze}" method="post" th:object="${prenotazioneForm}">
+		
+			<div class="error" th:if="${#fields.hasGlobalErrors()}">
+				<p th:each="err : ${#fields.globalErrors()}" th:text="${err}" style="color: red;"></p>
+			</div>
+			
+			<div id="date">
+				<label class = "prenotazioneLabel">Data di Arrivo <span th:if="${#fields.hasErrors('arrivoString')}" th:errors="*{arrivoString}" style="color: red; float: right;"></span>  </label>
+				<input type="date" name="arrivo" th:field="*{arrivoString}">
+				<label class = "prenotazioneLabel">Data di Partenza <span th:if="${#fields.hasErrors('partenzaString')}" th:errors="*{partenzaString}" style="color: red; float: right;"></span></label>
+				<input type="date" name="partenza" th:field="*{partenzaString}">
+			</div>
+			<div id="ospiti">
+				<label class = "prenotazioneLabel">Numero Ospiti <span th:if="${#fields.hasErrors('numeroOspiti')}" th:errors="*{numeroOspiti}" style="color: red;"></span></label> 
+				<input type="number" name="numeroOspiti" th:field="*{numeroOspiti}" max="4" min="1">
+			</div>
+			<input type="reset" value="Cancella"> 
+			<input type="submit" value="Invia">
+		</form>
+	</div>
+</body>
+</html>

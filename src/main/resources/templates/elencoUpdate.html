@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments.html :: headerfiles(title=#{title.elenco})"></head>
+<body>
+	<div th:replace="fragments/fragments.html :: intestazione-admin"></div>
+	<div id="table-div" style="position: relative;">
+		
+			<ul th:if="${camere}" style="position: relative;">
+				<li th:each="camera : ${camere}" style="position: relative;">
+				<form th:action="@{/elencoUpdate/updateCamera}" method="post" style="position: relative;">
+					<div id="div-dati-elenco" style="position: relative;">
+					<h4 class="txt-elenco">Numero stanza: <span th:text="${camera.numeroStanza}"></span></h4>
+
+					<h4 class="txt-elenco">Letti matrimoniali:<span th:text="${camera.matrimoniali}"></span> </h4>
+
+					<h4 class="txt-elenco">Letti singoli: <span th:text="${camera.singoli}"></span></h4>
+					
+					<h4 class="txt-elenco">Prezzo: <span th:text="${camera.prezzo}"></span>€</h4><br>
+					
+					<h4 class="txt-elenco">Libera: <span th:text="${camera.libera}"></span></h4>
+					</div>
+					<p class="descrizioneCamera" th:text="#{descrizioneCamera__${camera.numeroStanza}__}"></p>
+					
+					<img alt="test" th:src="@{/images/camere/camera__${camera.numeroStanza}__.jpg}" name="imgstanza">
+					
+					<input type="hidden" th:value="${camera.id}" name="cameraId">
+					<input class="inputElenco" type="submit" name="modifica" value="Modifica">
+					</form>
+				</li>
+			</ul>
+			<div class="unless" th:unless="${camere}">
+				<p>Nessuna camera libera trovata</p>
+				<button type="button" value="back" onclick="location.href='/segreteriaHome';">Back</button>
+			</div>
+		
+	</div>
+</body>
+</html>
