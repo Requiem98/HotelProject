@@ -24,6 +24,10 @@ public class Credentials {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Utente utente;
 	
+	public Credentials() {
+		
+	}
+	
 
 	public Credentials(String username, String password, Utente utente) {
 		this.username = username;

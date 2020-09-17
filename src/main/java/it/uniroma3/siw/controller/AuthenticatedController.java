@@ -24,9 +24,6 @@ import it.uniroma3.siw.service.PrenotazioneService;
 
 @Controller
 public class AuthenticatedController {
-
-	@Autowired
-	private CredentialService credentialService;
 	
 	@Autowired
 	private PrenotazioneAndCameraService prenotazioneAndCameraService;
@@ -53,33 +50,39 @@ public class AuthenticatedController {
 	
 	@RequestMapping(value = "/ricercaCamere", method = RequestMethod.GET)
 	public String getRicercaCameraPage(Model model) {
+		this.sessionData.getLoggedUser();
 		model.addAttribute("segreteriaForm", new SegreteriaForm());
 		return "ricercaCamere";
 	}
 	
 	@RequestMapping(value = "/segreteriaHome", method = RequestMethod.GET)
 	public String getSegreteriaPage(Model model) {
+		this.sessionData.getLoggedUser();
 		return "segreteriaHome";
 	}
 	
 	@RequestMapping(value = "/addCamera", method = RequestMethod.GET)
 	public String addCamera(Model model) {
+		this.sessionData.getLoggedUser();
 		model.addAttribute("camera", new Camera());
 		return "addCamera";
 	}
 	
 	@RequestMapping(value = "/removeCamera", method = RequestMethod.GET)
 	public String removeCamera(Model model) {
+		this.sessionData.getLoggedUser();
 		return "removeCamera";
 	}
 	
 	@RequestMapping(value = "/removePrenotazione", method = RequestMethod.GET)
 	public String removePrenotazione(Model model) {
+		this.sessionData.getLoggedUser();
 		return "removePrenotazione";
 	}
 	
 	@RequestMapping(value = "/elencoUpdate", method = RequestMethod.GET)
 	public String updateCamera(Model model) {
+		this.sessionData.getLoggedUser();
 		List<Camera> out = (List<Camera>) this.cameraService.getAll();
 		if(!out.isEmpty())
 			model.addAttribute("camere", this.cameraService.getAll());
@@ -88,6 +91,7 @@ public class AuthenticatedController {
 	
 	@RequestMapping(value = "/elencoPrenotazioni", method = RequestMethod.GET)
 	public String elencoPrenotazioni(Model model) {
+		this.sessionData.getLoggedUser();
 		List<Prenotazione> out = (List<Prenotazione>) this.prenotazioneService.getAll();
 		if(!out.isEmpty())
 			model.addAttribute("prenotazioni", this.prenotazioneService.getAll());
@@ -100,6 +104,7 @@ public class AuthenticatedController {
 	
 	@RequestMapping(value = "/elencoUpdate/updateCamera", method = RequestMethod.POST)
 	public String updateCameraScelta(@ModelAttribute("cameraId") Long id, Model model, HttpSession session) {
+		this.sessionData.getLoggedUser();
 		model.addAttribute("newCamera", new Camera());
 		model.addAttribute("oldCamera", this.cameraService.getCameraById(id));
 		session.setAttribute("oldCameraId", id);
@@ -108,6 +113,7 @@ public class AuthenticatedController {
 	
 	@RequestMapping(value = "/elencoUpdate/updateCamera/updated", method = RequestMethod.POST)
 	public String updatedCamera(@ModelAttribute("newCamera")Camera newCamera, BindingResult bn, @RequestParam("isLibera") String libera, Model model, HttpSession session) {
+		this.sessionData.getLoggedUser();
 		
 		this.CameraValidator.validate(newCamera, bn);
 		if(!bn.hasErrors()) {
@@ -128,6 +134,7 @@ public class AuthenticatedController {
 	
 	@RequestMapping(value = "/segreteriaHome/add", method = RequestMethod.POST)
 	public String addCameraPost(@ModelAttribute("camera") Camera c, BindingResult b, Model model) {
+		this.sessionData.getLoggedUser();
 		this.CameraValidator.validate(c, b);
 		if(!b.hasErrors())
 			this.cameraService.saveCamera(c);
@@ -139,6 +146,7 @@ public class AuthenticatedController {
 	
 	@RequestMapping(value = "/segreteriaHome/rem", method = RequestMethod.POST)
 	public String removeCameraPost(@RequestParam(required = false, name = "numeroStanza") Integer num, Model model) {
+		this.sessionData.getLoggedUser();
 		if(num != null) {
 			Camera c = this.cameraService.getCameraByNumero(num.intValue());
 			if(c != null) {
@@ -154,6 +162,7 @@ public class AuthenticatedController {
 	
 	@RequestMapping(value = "/segreteriaHome/remPren", method = RequestMethod.POST)
 	public String removePrenotazionePost(@RequestParam(required = false, name = "numeroPrenotazione") Long num, Model model) {
+		this.sessionData.getLoggedUser();
 		if(num != null) {
 			Prenotazione p = this.prenotazioneService.getPrenotazioneByNumero(num);
 			if(p != null) {
@@ -169,6 +178,7 @@ public class AuthenticatedController {
 
 	@RequestMapping(value = "/segreteriaHome/camere", method = RequestMethod.POST)
 	public String getCamera(@ModelAttribute("segreteriaForm") SegreteriaForm sf, BindingResult b, Model model) {
+		this.sessionData.getLoggedUser();
 
 		this.adminPageValidator.validate(sf, b);
 
